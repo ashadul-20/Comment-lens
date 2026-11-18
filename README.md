@@ -491,7 +491,7 @@ Lower the comment limit in the sidebar, or switch provider between Groq and Gemi
 
 ### Built for creators who deserve to hear their audience.
 
-**GeNarrative Clash 2026** · Made by [noobharshu-dev](https://github.com/noobharshu-dev) <!-- TODO: add teammates -->
+**GeNarrative Clash 2026** · Made by [ashadul-20](https://github.com/ashadul-20) <!-- TODO: add teammates -->
 
 <sub>If CommentLens helps you, a ⭐ on the repository is a small and welcome thank you.</sub>
 
