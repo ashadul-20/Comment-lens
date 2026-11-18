@@ -1,0 +1,781 @@
+/* ==========================================================================
+   CommentLens — styles.css
+   Minimalism & Swiss Style (International Typographic Style) Design System
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&display=swap');
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS (LIGHT THEME DEFAULT)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Surface & Ground */
+  --paper: #F7F9F8;
+  --surface: #FFFFFF;
+  --surface-subtle: #F1F4F2;
+  --surface-raised: #FFFFFF;
+
+  /* Typography & Ink */
+  --ink: #111817;
+  --muted: #525F5C;
+  --faint: #889592;
+
+  /* Structural Lines & Borders */
+  --line: #E2E7E5;
+  --line-strong: #B8C2BF;
+
+  /* Accent (International Typographic Signal Teal) */
+  --accent: #0F766E;
+  --accent-hover: #0B5B55;
+  --accent-soft: #E6F3F1;
+  --accent-ink: #0B4E49;
+  --accent-contrast: #FFFFFF;
+
+  /* Semantic Data States (Functional & High Contrast) */
+  --pos: #1B7A4B;
+  --pos-soft: #E8F5EE;
+  --neg: #C53030;
+  --neg-soft: #FDF0ED;
+  --neu: #71807D;
+  --neu-soft: #EFF2F1;
+  --mix: #B7791F;
+  --mix-soft: #FEF7EC;
+  --ques: #2563EB;
+  --ques-soft: #EFF6FF;
+
+  /* Warning / Alerts */
+  --warn: #B7791F;
+  --warn-soft: #FEF7EC;
+  --warn-line: #FBD38D;
+  --warn-text: #744210;
+
+  /* Typography scale */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Radii (Rational, Minimal, Rectilinear) */
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-pill: 9999px;
+
+  /* Shadows (Flat-first: flat borders with minimal utility elevation) */
+  --shadow-none: none;
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  /* Spacing Scale (8pt / 4pt grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Focus & Motion */
+  --focus-ring: 0 0 0 2px var(--paper), 0 0 0 4px var(--accent);
+  --transition-fast: 150ms ease;
+
+  /* Deprecated Clay Aliases (mapped to flat Swiss equivalents for zero regression) */
+  --clay: none;
+  --clay-sm: none;
+  --clay-press: none;
+  --mint: var(--pos-soft);
+  --sky: var(--ques-soft);
+  --lilac: var(--surface-subtle);
+  --peach: var(--mix-soft);
+  --butter: var(--mix-soft);
+  --rose: var(--neg-soft);
+}
+
+/* --------------------------------------------------------------------------
+   2. GLOBAL BODY & RESET (ENFORCED LIGHT SWISS THEME — PREVENTS BLACK SCREENS)
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100vh;
+  height: 100%;
+  background-color: var(--paper) !important;
+  color: var(--ink) !important;
+}
+
+body, [data-testid="stApp"], .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+  font-family: var(--font-sans) !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  color: var(--ink) !important;
+  background-color: var(--paper) !important;
+  background-image: none !important;
+  position: relative !important;
+  overflow-x: hidden !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv11", "ss03";
+}
+
+[data-testid="stHeader"] {
+  background: transparent !important;
+}
+
+/* Eliminate drifting glow blobs */
+.stApp::before, .stApp::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. HIDE STREAMLIT CHROME & CONTAINER ALIGNMENT
+   -------------------------------------------------------------------------- */
+footer, footer[data-testid="stFooter"], .streamlit-footer, #MainMenu, [data-testid="stDecoration"], [data-testid="stStatusWidget"], .stToolbar {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+div[data-testid="stMainBlockContainer"], .block-container {
+  max-width: 1180px !important;
+  padding: 2.5rem 2rem 5rem !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. SIDEBAR (MINIMALIST & FLAT)
+   -------------------------------------------------------------------------- */
+[data-testid="stSidebar"] {
+  background-color: var(--surface) !important;
+  border-right: 1px solid var(--line) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+[data-testid="stSidebar"] hr {
+  border-color: var(--line) !important;
+  margin: var(--space-4) 0 !important;
+}
+
+[data-testid="stSidebar"] .stMarkdown h3 {
+  font-size: 18px !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.015em !important;
+  color: var(--ink) !important;
+  margin-bottom: 2px !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. BUTTONS (FLAT, RATIONAL SWISS BUTTONS)
+   -------------------------------------------------------------------------- */
+button[kind="primary"], .btn.p, button[data-testid="baseButton-primary"] {
+  border: 1px solid var(--accent) !important;
+  background: var(--accent) !important;
+  box-shadow: none !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--accent-contrast) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  padding: 0 18px !important;
+  height: 40px !important;
+  cursor: pointer !important;
+  transition: background var(--transition-fast), border-color var(--transition-fast) !important;
+}
+
+button[kind="primary"]:hover, .btn.p:hover, button[data-testid="baseButton-primary"]:hover {
+  background: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+  color: var(--accent-contrast) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+button[kind="primary"]:active, .btn.p:active, button[data-testid="baseButton-primary"]:active {
+  background: var(--accent-hover) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+button[kind="primary"]:focus-visible, button[data-testid="baseButton-primary"]:focus-visible {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 2px !important;
+}
+
+button[kind="secondary"], .btn:not(.p), button[data-testid="baseButton-secondary"],
+[data-testid="stDownloadButton"] button {
+  border: 1px solid var(--line) !important;
+  background: var(--surface) !important;
+  box-shadow: none !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--ink) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  padding: 0 16px !important;
+  height: 40px !important;
+  cursor: pointer !important;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast) !important;
+}
+
+button[kind="secondary"]:hover, .btn:not(.p):hover, [data-testid="stDownloadButton"] button:hover,
+button[data-testid="baseButton-secondary"]:hover {
+  background: var(--surface-subtle) !important;
+  border-color: var(--line-strong) !important;
+  color: var(--ink) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+button[kind="secondary"]:active, .btn:not(.p):active, [data-testid="stDownloadButton"] button:active,
+button[data-testid="baseButton-secondary"]:active {
+  background: var(--line) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+button[kind="secondary"]:focus-visible, button[data-testid="baseButton-secondary"]:focus-visible,
+[data-testid="stDownloadButton"] button:focus-visible {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. INPUTS & SEARCH (CRISP, CLEAN 1PX BORDERS)
+   -------------------------------------------------------------------------- */
+input[type="text"], input[type="number"], .stTextInput input, .search {
+  border: 1px solid var(--line) !important;
+  background: var(--surface) !important;
+  box-shadow: none !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--ink) !important;
+  padding: 0 14px !important;
+  height: 44px !important;
+  font-size: 14px !important;
+  font-family: var(--font-sans) !important;
+  outline: none !important;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast) !important;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, .stTextInput input:focus, .search:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 1px var(--accent) !important;
+}
+
+.stTextInput > div > div {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.stTextInput > div {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. CHECKBOX & TOGGLES
+   -------------------------------------------------------------------------- */
+.stCheckbox {
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.stCheckbox span[data-testid="stCheckbox-label"], .toggle {
+  color: var(--muted) !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+}
+
+.stCheckbox div[data-testid="stCheckbox-indicator"], .toggle i {
+  background: var(--surface) !important;
+  border: 1px solid var(--line-strong) !important;
+  box-shadow: none !important;
+  border-radius: var(--radius-sm) !important;
+  transition: background var(--transition-fast), border-color var(--transition-fast) !important;
+}
+
+.stCheckbox:hover div[data-testid="stCheckbox-indicator"], .toggle:hover i {
+  border-color: var(--accent) !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. TABLE (CRISP RECTILINEAR SWISS CONTAINER)
+   -------------------------------------------------------------------------- */
+[data-testid="stDataFrame"], .tbl {
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: none !important;
+  background: var(--surface) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+[data-testid="stDataFrame"] iframe {
+  border-radius: var(--radius-md) !important;
+}
+
+.tbl .r {
+  border-top: 1px solid var(--line);
+  padding: 8px 16px;
+  transition: background var(--transition-fast);
+}
+
+.tbl .r.h {
+  background: var(--surface-subtle);
+  border-top: 0;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.tbl .r:not(.h):hover {
+  background: var(--surface-subtle);
+  transform: none;
+}
+
+.tbl .r.sel {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  box-shadow: none;
+}
+
+/* --------------------------------------------------------------------------
+   9. PALETTE PILLS (CLEAN, MINIMALIST FILTER CAPSULES)
+   -------------------------------------------------------------------------- */
+[data-testid="stButtonGroup"] {
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  background: transparent !important;
+  padding: 4px 0 !important;
+}
+
+[data-testid="stButtonGroup"] button {
+  border: 1px solid var(--line) !important;
+  background: var(--surface) !important;
+  box-shadow: none !important;
+  height: 36px !important;
+  padding: 0 14px !important;
+  border-radius: var(--radius-pill) !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  color: var(--ink) !important;
+  font-variant-numeric: tabular-nums !important;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast) !important;
+}
+
+[data-testid="stButtonGroup"] button:hover {
+  background: var(--surface-subtle) !important;
+  border-color: var(--line-strong) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+[data-testid="stButtonGroup"] button:active {
+  background: var(--line) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+[data-testid="stButtonGroup"] button[data-selected="true"] {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: var(--accent-contrast) !important;
+  box-shadow: none !important;
+}
+
+[data-testid="stButtonGroup"] button[data-selected="true"] * {
+  color: var(--accent-contrast) !important;
+}
+
+[data-testid="stButtonGroup"] button:focus-visible {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* Semantic standalone pill */
+.pill {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: none;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 13px;
+  white-space: nowrap;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.pill:hover {
+  background: var(--surface-subtle);
+  border-color: var(--line-strong);
+}
+
+.pill.on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+/* --------------------------------------------------------------------------
+   10. SIGNATURE MOOD BAR (FLAT RECTILINEAR SEGMENTS)
+   -------------------------------------------------------------------------- */
+.mood {
+  display: flex !important;
+  gap: 4px !important;
+  width: 100% !important;
+}
+
+.seg {
+  border-radius: var(--radius-sm) !important;
+  box-shadow: none !important;
+  transform-origin: left center !important;
+  transition: opacity var(--transition-fast);
+}
+
+.seglab {
+  margin-top: 8px !important;
+  font-size: 12px !important;
+  color: var(--muted) !important;
+  min-width: 0 !important;
+}
+
+.seglab b {
+  display: block !important;
+  color: var(--ink) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* Mood Legend Grid (High-legibility 4-column Swiss legend) */
+.mood-legend-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  margin-top: 14px !important;
+  width: 100% !important;
+}
+
+.mood-legend-item {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+}
+
+.mood-legend-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin-bottom: 2px !important;
+}
+
+.mood-legend-dot {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: var(--radius-sm) !important;
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+}
+
+.mood-legend-title {
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  color: var(--ink) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.mood-legend-meta {
+  font-size: 13px !important;
+  color: var(--muted) !important;
+  font-variant-numeric: tabular-nums !important;
+  white-space: nowrap !important;
+}
+
+.mood-legend-pct {
+  color: var(--faint) !important;
+  font-size: 12px !important;
+}
+
+@media (max-width: 640px) {
+  .mood-legend-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. THEME BARS (FLAT ACCENT FILL ON RECTILINEAR TRACK)
+   -------------------------------------------------------------------------- */
+.theme-bar-track {
+  height: 8px !important;
+  background: var(--line) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.theme-bar-fill {
+  display: block !important;
+  height: 8px !important;
+  background: var(--accent) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   12. CARDS & SURFACES (SWISS RECTILINEAR CARDS)
+   -------------------------------------------------------------------------- */
+.swiss-card, .cl-clay-card, .cl-clay-sm {
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: none !important;
+  background: var(--surface) !important;
+  padding: 20px 24px !important;
+}
+
+/* --------------------------------------------------------------------------
+   13. PROGRESS BARS & STATUS INDICATORS
+   -------------------------------------------------------------------------- */
+[data-testid="stProgressBar"] > div {
+  height: 8px !important;
+  background: var(--line) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: none !important;
+}
+
+[data-testid="stProgressBar"] > div > div {
+  height: 8px !important;
+  background: var(--accent) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: none !important;
+}
+
+.pulse {
+  animation: none !important;
+  box-shadow: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   14. DETAIL PANEL & SCRIM
+   -------------------------------------------------------------------------- */
+.cl-detail-card {
+  background: var(--surface) !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: var(--shadow-sm) !important;
+  padding: 24px !important;
+}
+
+.cl-table-scrim {
+  position: relative !important;
+}
+
+.chip {
+  border-radius: var(--radius-sm) !important;
+  box-shadow: none !important;
+  border: 1px solid var(--line) !important;
+  background: var(--surface-subtle) !important;
+  color: var(--ink) !important;
+  padding: 3px 8px !important;
+  margin-right: 6px !important;
+  margin-bottom: 6px !important;
+  display: inline-block !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.chip.b { background: var(--neg-soft) !important; border-color: transparent !important; color: var(--neg) !important; }
+.chip.q { background: var(--ques-soft) !important; border-color: transparent !important; color: var(--ques) !important; }
+.chip.s { background: var(--pos-soft) !important; border-color: transparent !important; color: var(--pos) !important; }
+.chip.h { background: var(--mix-soft) !important; border-color: transparent !important; color: var(--mix) !important; }
+
+/* --------------------------------------------------------------------------
+   15. STREAMLIT TABS (MINIMALIST BORDERED TABS)
+   -------------------------------------------------------------------------- */
+.stTabs [data-baseweb="tab-list"] {
+  gap: 24px !important;
+  border-bottom: 1px solid var(--line) !important;
+  background: transparent !important;
+  padding-bottom: 0 !important;
+}
+
+.stTabs [data-baseweb="tab"] {
+  padding: 12px 2px !important;
+  color: var(--muted) !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  border: none !important;
+  background: transparent !important;
+  transition: color var(--transition-fast) !important;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+  color: var(--ink) !important;
+}
+
+.stTabs [aria-selected="true"] {
+  color: var(--ink) !important;
+  font-weight: 600 !important;
+  border-bottom: 2px solid var(--accent) !important;
+}
+
+.stTabs [data-baseweb="tab"]:focus-visible {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* --------------------------------------------------------------------------
+   16. REDUCED MOTION PREFERENCE
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   17. SWISS EDITORIAL QUOTES & UTILITIES
+   -------------------------------------------------------------------------- */
+.quote-card {
+  border: 1px solid var(--line) !important;
+  border-left: 3px solid var(--accent) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: none !important;
+  background: var(--surface) !important;
+  padding: 18px 20px !important;
+  margin: 12px 0 !important;
+}
+
+.quote-text {
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  color: var(--ink) !important;
+  margin-bottom: 8px !important;
+}
+
+.quote-meta {
+  display: flex !important;
+  gap: 12px !important;
+  font-size: 12px !important;
+  color: var(--muted) !important;
+}
+
+.quote-author {
+  font-weight: 600 !important;
+  color: var(--ink) !important;
+}
+
+.lang-bars {
+  margin-top: 12px !important;
+}
+
+.lang-bar {
+  margin: 8px 0 !important;
+}
+
+.lang-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  font-size: 12px !important;
+  margin-bottom: 4px !important;
+}
+
+.lang-name {
+  font-weight: 500 !important;
+  color: var(--ink) !important;
+}
+
+.lang-pct {
+  color: var(--muted) !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.lang-track {
+  height: 6px !important;
+  background: var(--line) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+}
+
+.lang-fill {
+  height: 6px !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.cl-section-heading, .h2 {
+  font-family: var(--font-sans) !important;
+  font-size: 18px !important;
+  font-weight: 650 !important;
+  color: var(--ink) !important;
+  letter-spacing: -0.015em !important;
+  margin-bottom: 8px !important;
+}
+
+.cl-badge {
+  display: inline-block !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  padding: 2px 8px !important;
+  border-radius: var(--radius-sm) !important;
+  margin-right: 6px !important;
+  border: 1px solid var(--line) !important;
+  background: var(--surface-subtle) !important;
+  color: var(--ink) !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.cl-badge-positive { background: var(--pos-soft) !important; color: var(--pos) !important; border-color: transparent !important; }
+.cl-badge-negative { background: var(--neg-soft) !important; color: var(--neg) !important; border-color: transparent !important; }
+.cl-badge-neutral  { background: var(--neu-soft) !important; color: var(--neu) !important; border-color: transparent !important; }
+.cl-badge-mixed    { background: var(--mix-soft) !important; color: var(--mix) !important; border-color: transparent !important; }
+.cl-badge-accent   { background: var(--accent-soft) !important; color: var(--accent-ink) !important; border-color: transparent !important; }
+
+/* --------------------------------------------------------------------------
+   18. RESPONSIVE MEDIA QUERIES (SWISS RESILIENCE)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  div[data-testid="stMainBlockContainer"], .block-container {
+    padding: 1.5rem 1rem 3rem !important;
+  }
+
+  [data-testid="stButtonGroup"] {
+    gap: 6px !important;
+  }
+
+  [data-testid="stButtonGroup"] button {
+    height: 32px !important;
+    padding: 0 10px !important;
+    font-size: 12px !important;
+  }
+
+  .cl-detail-card {
+    padding: 16px !important;
+  }
+
+  /* Responsive Mood Bar Grid */
+  div[style*="grid-template-columns:200px 1fr"],
+  div[style*="grid-template-columns: 200px 1fr"],
+  div[style*="grid-template-columns:420px 1fr"],
+  div[style*="grid-template-columns: 420px 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
