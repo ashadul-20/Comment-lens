@@ -45,8 +45,8 @@ It is not a chatbot that summarises a page. It is a working tool: a mood bar, cl
 > **No API keys needed.** Demo mode loads a saved multilingual analysis, so it works offline and never hits a rate limit.
 
 ```bash
-git clone https://github.com/noobharshu-dev/commentlens.git
-cd commentlens
+git clone https://github.com/ashadul-20/Comment-lens.git
+cd Comment-lens
 pip install -r requirements.txt
 python -m streamlit run app.py
 ```
@@ -315,8 +315,8 @@ python -m pytest tests -v
 ## 🚀 Full setup
 
 ```bash
-git clone https://github.com/noobharshu-dev/commentlens.git
-cd commentlens
+git clone https://github.com/ashadul-20/Comment-lens.git
+cd Comment-lens
 pip install -r requirements.txt
 copy .env.example .env        # macOS/Linux: cp .env.example .env
 # add your keys to .env, then:
@@ -491,7 +491,7 @@ Lower the comment limit in the sidebar, or switch provider between Groq and Gemi
 
 ### Built for creators who deserve to hear their audience.
 
-**GeNarrative Clash 2026** · Made by [noobharshu-dev](https://github.com/noobharshu-dev) <!-- TODO: add teammates -->
+**GeNarrative Clash 2026** · Made by [ashadul-20](https://github.com/ashadul-20) <!-- TODO: add teammates -->
 
 <sub>If CommentLens helps you, a ⭐ on the repository is a small and welcome thank you.</sub>
 
